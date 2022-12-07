@@ -8,6 +8,15 @@ const HOSTIDFILE: &str = "/etc/hostid";
 const HOSTSFILE: &str = "/etc/hosts";
 
 #[inline]
+/// Return the host ID (in hexadecimal) of the current host.
+///
+/// # Examples
+///
+/// ```
+/// let host_id = gethostid_rs::gethostid();
+/// println!("{}", host_id)
+/// ```
+
 pub fn gethostid() -> String {
     let fd = File::open(HOSTIDFILE);
 
@@ -64,7 +73,7 @@ pub fn gethostid() -> String {
         let to_shift = u32::from_le_bytes(u_vec.try_into().unwrap());
         let shifted = to_shift << 16 | to_shift >> 16;
 
-        let mut s = String::new();
+        let mut s = String::with_capacity(4);
         for byte in shifted.to_le_bytes() {
             write!(&mut s, "{:02x}", byte).expect("Unable to write as hex");
         }
@@ -76,6 +85,9 @@ pub fn gethostid() -> String {
 const ETC_HOSTNAME: &str = "/etc/hostname";
 const PROC_HOSTNAME: &str = "/proc/sys/kernel/hostname";
 
+/// Return the Host name of the current host.
+/// With the hostname we can deduce the Host IP
+/// which is used when the hostid file (`/etc/hostid`) is not set.
 fn gethostname() -> String {
     if let Ok(f) = File::open(ETC_HOSTNAME) {
         _get_host_name(f)
@@ -94,25 +106,3 @@ fn _get_host_name(f: File) -> String {
 
     buf
 }
-
-//#[cfg(test)]
-//mod test {
-//    use std::fs::File;
-//
-//    use crate::gethostid;
-//
-//    #[test]
-//    fn test_host_id() {
-//        const HOSTIDFILE: &str = "/etc/hostid";
-//
-//        let hostid = gethostid();
-//        println!("{}", hostid);
-//        let fd = File::open(HOSTIDFILE);
-//
-//        if fd.is_ok() {
-//            assert_eq!(hostid, String::from("64616873"))
-//        } else {
-//            assert_eq!(hostid, String::from("1c7f0100"))
-//        }
-//    }
-//}
