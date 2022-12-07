@@ -10,7 +10,7 @@ readme = "README.md"
 documentation = "https://docs.rs/gethostid-rs"
 homepage = "https://github.com/shadawck/gethostid"
 repository = "https://github.com/shadawck/gethostid"
-license = "MIT or Apache-2.0"
+license = "MIT OR Apache-2.0"
 
 
 [dependencies]
