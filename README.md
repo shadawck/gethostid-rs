@@ -1,7 +1,7 @@
 # gethostid
 
-[![Current release](https://img.shields.io/crates/v/gethostid-rs.svg)][crates]
-[![Documentation](https://docs.rs/gethostid-rs/badge.svg)][docs]
+[![Crates.io](https://img.shields.io/crates/v/gethostid-rs.svg)](https://crates.io/crates/gethostid-rs)
+[![Docs](https://docs.rs/gethostid-rs/badge.svg)](https://docs.rs/gethostid-rs)
 
 Implementation of gethostid (glibc) in pure rust.
 
@@ -10,6 +10,7 @@ Implementation of gethostid (glibc) in pure rust.
 ```bash
 cargo add gethostid-rs
 ```
+
 
 ### License
 
