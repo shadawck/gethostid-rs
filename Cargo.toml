@@ -1,6 +1,6 @@
 [package]
 name = "gethostid-rs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = " Pure rust implementation of gethostid() from libc (used in hostid) "
 authors = ["shadawck <shadawck@protonmail.com>"]
